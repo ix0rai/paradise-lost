@@ -35,7 +35,10 @@
     "server.ServerWorldMixin",
     "util.NbtCompoundAccessor",
     "util.RarityMixin",
-    "util.SignTypeAccessor"
+    "util.SignTypeAccessor",
+    "brain.MemoryModuleTypeInvoker",
+    "brain.ActivityInvoker",
+    "brain.SensorTypeInvoker"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",
