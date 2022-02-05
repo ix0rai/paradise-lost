@@ -15,4 +15,11 @@ public class AetherItemTags {
     public static final Tag<Item> MOA_TEMPTABLES = TagFactory.ITEM.create(Aether.locate("entity/moa_temptables"));
     public static final Tag<Item> RIGHTEOUS_WEAPONS = TagFactory.ITEM.create(Aether.locate("tool/righteous_weapons"));
     public static final Tag<Item> SACRED_WEAPONS = TagFactory.ITEM.create(Aether.locate("tool/sacred_weapons"));
+
+    // Duplicated because of RecipesProvider
+    public static final Tag<Item> SKYROOT_LOGS = TagFactory.ITEM.create(Aether.locate("skyroot_logs"));
+    public static final Tag<Item> GOLDEN_OAK_LOGS = TagFactory.ITEM.create(Aether.locate("golden_oak_logs"));
+    public static final Tag<Item> CRYSTAL_LOGS = TagFactory.ITEM.create(Aether.locate("crystal_logs"));
+    public static final Tag<Item> WISTERIA_LOGS = TagFactory.ITEM.create(Aether.locate("wisteria_logs"));
+    public static final Tag<Item> ORANGE_LOGS = TagFactory.ITEM.create(Aether.locate("orange_logs"));
 }

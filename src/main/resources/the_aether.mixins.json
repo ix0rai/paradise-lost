@@ -30,6 +30,7 @@
     "item.ToolMaterialsAccessor",
     "server.EntityTrackerEntryMixin",
     "server.PlayerManagerMixin",
+    "server.RecipesProviderMixin",
     "server.ServerPlayerEntityMixin",
     "server.ServerPlayNetworkHandlerMixin",
     "server.ServerWorldMixin",
