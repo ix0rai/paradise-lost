@@ -1,9 +1,11 @@
 package net.id.aether.world.dimension;
 
 import net.id.aether.entities.AetherEntityTypes;
+import net.id.aether.util.AetherSoundEvents;
 import net.id.aether.world.gen.carver.AetherCarvers;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.sound.MusicSound;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -79,9 +81,10 @@ public final class AetherBiomes {
      * @param waterColor The color of water
      * @param waterFogColor The color of fog while in water
      * @param grassModifier Modifies grass colors
+     * @param music The music to play within the biome
      * @return The new {@link BiomeEffects} instance
      */
-    private static BiomeEffects createBiomeEffects(int skyColor, int foliageColor, int grassColor, int fogColor, int waterColor, int waterFogColor, BiomeEffects.GrassColorModifier grassModifier){
+    private static BiomeEffects createBiomeEffects(int skyColor, int foliageColor, int grassColor, int fogColor, int waterColor, int waterFogColor, BiomeEffects.GrassColorModifier grassModifier, MusicSound music){
         return new BiomeEffects.Builder()
             .skyColor(skyColor)
             .foliageColor(foliageColor)
@@ -90,7 +93,24 @@ public final class AetherBiomes {
             .waterColor(waterColor)
             .waterFogColor(waterFogColor)
             .grassColorModifier(grassModifier)
+            .music(music)
             .build();
+    }
+
+    /**
+     * Creates a new {@link BiomeEffects} instance from the provided colors.
+     *
+     * @param skyColor The color of the sky
+     * @param foliageColor The color of foliage (I.E. leaves)
+     * @param grassColor The color of grass
+     * @param fogColor The color of fog
+     * @param waterColor The color of water
+     * @param waterFogColor The color of fog while in water
+     * @param grassModifier Modifies grass colors
+     * @return The new {@link BiomeEffects} instance
+     */
+    private static BiomeEffects createBiomeEffects(int skyColor, int foliageColor, int grassColor, int fogColor, int waterColor, int waterFogColor, BiomeEffects.GrassColorModifier grassModifier){
+        return createBiomeEffects(skyColor, foliageColor, grassColor, fogColor, waterColor, waterFogColor, grassModifier, AetherSoundEvents.Music.AETHER);
     }
     
     /**
@@ -217,7 +237,7 @@ public final class AetherBiomes {
                 ORE_GRAVITITE,
                 ORE_ZANITE
             ),
-            // cursed generation step, but it stops trees from generating inside of these
+            // cursed generation step, but it stops trees from generating inside these
             GenerationStep.Feature.TOP_LAYER_MODIFICATION, List.of(
                 CRYSTAL_TREE_ISLAND
             )
@@ -225,19 +245,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createHighlandsPlains(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.0,
-          "scale": 0.1
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xDCFF81, 0xB1FFCB, 0xFFFFFF, 0x58E5FF, 0x58E5FF))
             .generationSettings(createGenerationSettings(
@@ -267,17 +274,17 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 6, 5, 13),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERWHALE, 6, 1, 3)
                     )
                 ),
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.5F).downfall(1)
             .category(Biome.Category.PLAINS)
@@ -285,19 +292,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createHighlandsForest(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.1,
-          "scale": 0.1
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xD6FF6B, 0x88EBA1, 0xFFFFFF, 0x58E5FF, 0x58E5FF))
             .generationSettings(createGenerationSettings(
@@ -328,18 +322,17 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 6, 3, 7),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERWHALE, 6, 1, 3)
                     )
                 ),
-                
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12F)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.5F).downfall(1)
             .category(Biome.Category.FOREST)
@@ -347,19 +340,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createHighlandsThicket(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.125,
-          "scale": 0.05
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xC8E67A, 0x85DDAF, 0xFFFFFF, 0x58E5FF, 0x58E5FF, BiomeEffects.GrassColorModifier.DARK_FOREST))
             .generationSettings(createGenerationSettings(
@@ -396,20 +376,18 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6),
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 50, 1, 2)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 29, 1, 2),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 10, 1, 5),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERWHALE, 6, 1, 3)
                     )
                 ),
-                
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12),
-                    AetherEntityTypes.AECHOR_PLANT, SpawnCost.of(0.75, 0.07)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.4F).downfall(2)
             .category(Biome.Category.FOREST)
@@ -417,20 +395,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createWisteriaWoods(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "parent": "the_aether:aether_highlands_forest",
-          "player_spawn_friendly": false,
-          "depth": 0.155,
-          "scale": 0.15
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xF3FF81, 0x88EF9D, 0xFFFFFF, 0xA9F7FF, 0x58E5FF))
             .generationSettings(createGenerationSettings(
@@ -458,21 +422,19 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 30, 1, 3),
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 100, 3, 7)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 29, 3, 7),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 10, 1, 5),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERWHALE, 6, 1, 3)
                     )
                 ),
-                
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12),
-                    AetherEntityTypes.AECHOR_PLANT, SpawnCost.of(0.7, 0.1)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.5F).downfall(1)
             .category(Biome.Category.FOREST)
@@ -480,19 +442,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createAutumnalTundra(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.1,
-          "scale": 0.025
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xFFB485, 0xFFFFFF, 0xFFFFFF, 0x8CE6FF, 0x8CE6FF))
             .generationSettings(createGenerationSettings(
@@ -527,18 +476,17 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 6, 5, 13),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 6, 1, 3)
                     )
                 ),
-                
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.1F).downfall(2)
             .category(Biome.Category.TAIGA)
@@ -546,19 +494,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createContinentalPlateau(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.0,
-          "scale": 0.05
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xDCFFCC, 0x91E2C8, 0xFFFFFF, 0x58E5FF, 0x58E5FF))
             .generationSettings(createGenerationSettings(
@@ -591,18 +526,17 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 6, 5, 13),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 6, 1, 3)
                     )
                 ),
-            
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.25F).downfall(0)
             .category(Biome.Category.PLAINS)
@@ -610,19 +544,6 @@ public final class AetherBiomes {
     }
     
     private static Biome createHighlandsShield(){
-        /*
-        TODO
-        {
-          "starts": [
-            "the_aether:well",
-            "the_aether:skyroot_tower",
-            "the_aether:orange_ruin"
-          ],
-          "player_spawn_friendly": false,
-          "depth": 0.0,
-          "scale": 0.035
-        }
-         */
         return new Biome.Builder()
             .effects(createBiomeEffects(0xC0C0FF, 0xFFF781, 0xDCFFB0, 0xFFFFFF, 0x58E5FF, 0x58E5FF))
             .generationSettings(createGenerationSettings(
@@ -668,19 +589,18 @@ public final class AetherBiomes {
             .spawnSettings(createSpawnSettings(
                 Map.of(
                     SpawnGroup.MONSTER, List.of(
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 100, 2, 6),
-                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 50, 1, 3)
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.COCKATRICE, 100, 2, 4)
                     ),
                     SpawnGroup.CREATURE, List.of(
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.BLUE_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.GOLDEN_SWET, 15, 2, 6),
+                        new SpawnSettings.SpawnEntry(AetherEntityTypes.AECHOR_PLANT, 29, 1, 3),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 12, 4, 4),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.MOA, 6, 5, 13),
                         new SpawnSettings.SpawnEntry(AetherEntityTypes.AERBUNNY, 6, 1, 3)
                     )
                 ),
-                Map.of(
-                    AetherEntityTypes.BLUE_SWET, SpawnCost.of(1, 0.12),
-                    AetherEntityTypes.AECHOR_PLANT, SpawnCost.of(1, 0.1)
-                )
+                Map.of()
             ))
             .precipitation(Biome.Precipitation.RAIN).temperature(0.35F).downfall(2)
             .category(Biome.Category.PLAINS)

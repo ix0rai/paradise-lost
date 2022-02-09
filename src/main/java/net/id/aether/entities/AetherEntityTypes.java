@@ -45,13 +45,12 @@ public class AetherEntityTypes {
             attributes(WhiteSwetEntity::createSwetAttributes), spawnRestrictions(SwetEntity::canSpawn));
     public static final EntityType<GoldenSwetEntity> GOLDEN_SWET = add("golden_swet", of(GoldenSwetEntity::new, MONSTER, changing(2.0F, 2.0F), 5),
             attributes(GoldenSwetEntity::createSwetAttributes), spawnRestrictions(SwetEntity::canSpawn));
-    //todo: why is this an animal? should extend hostile to allow hostile spawn restrictions, and inherit hostile behviour
     public static final EntityType<AechorPlantEntity> AECHOR_PLANT = add("aechor_plant", of(AechorPlantEntity::new, MONSTER, changing(1f, 1f), 5),
-            attributes(AechorPlantEntity::createAechorPlantAttributes), spawnRestrictions(AetherAnimalEntity::isValidNaturalAetherSpawn));
+            attributes(AechorPlantEntity::createAechorPlantAttributes), spawnRestrictions(AechorPlantEntity::canSpawn));
 //    public static final EntityType<ChestMimicEntity> CHEST_MIMIC = add("chest_mimic", of(ChestMimicEntity::new, MONSTER, changing(1.0F, 2.0F), 5),
 //            attributes(ChestMimicEntity::createChestMimicAttributes), spawnRestrictions(HostileEntity::canSpawnInDark));
     public static final EntityType<CockatriceEntity> COCKATRICE = add("cockatrice", of(CockatriceEntity::new, MONSTER, changing(1.0F, 2.0F), 5),
-            attributes(CockatriceEntity::createCockatriceAttributes), spawnRestrictions(HostileEntity::canSpawnInDark));
+            attributes(CockatriceEntity::createCockatriceAttributes), spawnRestrictions(CockatriceEntity::canSpawn));
     // passive
     public static final EntityType<MoaEntity> MOA = add("moa", of(MoaEntity::new, CREATURE, changing(1.0F, 2.0F), 5),
             attributes(MoaEntity::createMoaAttributes), spawnRestrictions(AetherAnimalEntity::isValidNaturalAetherSpawn));

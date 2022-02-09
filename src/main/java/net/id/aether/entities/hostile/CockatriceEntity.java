@@ -5,7 +5,9 @@ import net.id.aether.component.ConditionManager;
 import net.id.aether.effect.condition.Conditions;
 import net.id.aether.effect.condition.Persistence;
 import net.id.aether.entities.projectile.CockatriceSpitEntity;
+import net.id.aether.tag.AetherBlockTags;
 import net.id.aether.util.AetherSoundEvents;
+import net.id.aether.world.dimension.AetherBiomes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,11 +24,16 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+
+import java.util.Optional;
+import java.util.Random;
 
 public class CockatriceEntity extends HostileEntity implements RangedAttackMob {
     public float flapProgress;
@@ -136,19 +143,14 @@ public class CockatriceEntity extends HostileEntity implements RangedAttackMob {
         return false;
     }
 
-    @Override
-    public boolean canSpawn(WorldAccess world, SpawnReason SpawnReason) {
-        return world.getRandom().nextInt(25) == 0 && super.canSpawn(world, SpawnReason);
+    public static boolean canSpawn(EntityType<? extends CockatriceEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return HostileEntity.canSpawnInDark(type, world, spawnReason, pos, random) ||
+                world.getBiome(pos) == AetherBiomes.AUTUMNAL_TUNDRA;
     }
 
     @Override
     public boolean canHaveStatusEffect(StatusEffectInstance effect) {
         return effect.getEffectType() != StatusEffects.POISON && super.canHaveStatusEffect(effect);
-    }
-
-    @Override
-    public int getLimitPerChunk() {
-        return 1;
     }
 
     @Override
