@@ -231,6 +231,7 @@ public class FloatingBlockHelperImpls {
 
         // returns false if the tree is unable to move. returns true otherwise.
         private static boolean continueTree(World world, BlockPos pos, SetBuilder builder, boolean overrideBlacklist) {
+
             if (builder.size() > MAX_MOVABLE_BLOCKS + 1) {
                 return false;
             }

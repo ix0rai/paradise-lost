@@ -6,6 +6,7 @@ import net.id.aether.entities.block.BlockLikeEntity;
 import net.id.aether.entities.block.FloatingBlockEntity;
 import net.id.aether.entities.util.FloatingBlockHelperImpls;
 import net.id.aether.entities.util.BlockLikeEntitySet;
+import net.id.aether.entities.util.FloatingBlockSet;
 import net.id.aether.tag.AetherBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PistonBlock;
@@ -19,7 +20,6 @@ import static net.id.aether.entities.util.FloatingBlockHelperImpls.*;
 
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * A helper class designed to aid in the creation of floating blocks and {@link BlockLikeEntitySet}s.
