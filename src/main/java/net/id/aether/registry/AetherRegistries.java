@@ -21,6 +21,7 @@ public class AetherRegistries {
     //public static final RegistryKey<Registry<Condition>> CONDITION_REGISTRY_KEY = RegistryKey.ofRegistry(locate("condition"));
     public static final Registry<Condition> CONDITION_REGISTRY =  FabricRegistryBuilder.createSimple(Condition.class, locate("condition")).buildAndRegister();
     //(Registry<Condition>) ((MutableRegistry) Registry.REGISTRIES).add(CONDITION_REGISTRY_KEY, new SimpleRegistry<>(CONDITION_REGISTRY_KEY, Lifecycle.experimental(), null), Lifecycle.experimental());
+
     
     /**
      * The registry for {@link LoreEntry}, try not to use this directly. Use the methods in {@link net.id.aether.lore.AetherLore}.

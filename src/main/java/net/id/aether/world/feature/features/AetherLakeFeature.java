@@ -149,9 +149,48 @@ public class AetherLakeFeature extends Feature<DynamicConfiguration>{
             if(context.getConfig().state.getMaterial() == Material.WATER){
                 for(int xOff = 0; xOff < 16; xOff++){
                     for(int zOff = 0; zOff < 16; zOff++){
-                        var blockPos3 = blockPos.add(xOff, 4, zOff);
-                        if(context.getWorld().getBiome(blockPos3).value().canSetIce(context.getWorld(), blockPos3, false)){
-                            context.getWorld().setBlockState(blockPos3, Blocks.ICE.getDefaultState(), Block.NOTIFY_LISTENERS);
+                        for(int yOff = 4; yOff < 8; yOff++){
+                            if(waterMap[(xOff * 16 + zOff) * 8 + yOff]){
+                                var blockPos3 = blockPos.add(xOff, yOff - 1, zOff);
+                                if(isSoil(context.getWorld().getBlockState(blockPos3)) && context.getWorld().getLightLevel(LightType.SKY, blockPos.add(xOff, yOff, zOff)) > 0){
+                                    context.getWorld().setBlockState(blockPos3, AetherBlocks.AETHER_GRASS_BLOCK.getDefaultState(), Block.NOTIFY_LISTENERS);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Replace 50% of lave lake edge blocks with holystone.
+                if(context.getConfig().state.getMaterial() == Material.LAVA){
+                    for(int xOff = 0; xOff < 16; xOff++){
+                        for(int zOff = 0; zOff < 16; zOff++){
+                            for(int yOff = 0; yOff < 8; yOff++){
+                                boolean lakeEdge =
+                                    !waterMap[(xOff * 16 + zOff) * 8 + yOff] &&
+                                    (
+                                        xOff < 15 && waterMap[((xOff + 1) * 16 + zOff) * 8 + yOff] ||
+                                        xOff > 0 && waterMap[((xOff - 1) * 16 + zOff) * 8 + yOff] ||
+                                        zOff < 15 && waterMap[(xOff * 16 + zOff + 1) * 8 + yOff] ||
+                                        zOff > 0 && waterMap[(xOff * 16 + (zOff - 1)) * 8 + yOff] ||
+                                        yOff < 7 && waterMap[(xOff * 16 + zOff) * 8 + yOff + 1] ||
+                                        yOff > 0 && waterMap[(xOff * 16 + zOff) * 8 + (yOff - 1)]
+                                    );
+                                if(lakeEdge && (yOff < 4 || context.getRandom().nextInt(2) != 0) && context.getWorld().getBlockState(blockPos.add(xOff, yOff, zOff)).getMaterial().isSolid()){
+                                    context.getWorld().setBlockState(blockPos.add(xOff, yOff, zOff), AetherBlocks.HOLYSTONE.getDefaultState(), Block.NOTIFY_LISTENERS);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Cover water lakes with ice in frozen biomes
+                if(context.getConfig().state.getMaterial() == Material.WATER){
+                    for(int xOff = 0; xOff < 16; xOff++){
+                        for(int zOff = 0; zOff < 16; zOff++){
+                            var blockPos3 = blockPos.add(xOff, 4, zOff);
+                            if(context.getWorld().getBiome(blockPos3).value().canSetIce(context.getWorld(), blockPos3, false)){
+                                context.getWorld().setBlockState(blockPos3, Blocks.ICE.getDefaultState(), Block.NOTIFY_LISTENERS);
+                            }
                         }
                     }
                 }
