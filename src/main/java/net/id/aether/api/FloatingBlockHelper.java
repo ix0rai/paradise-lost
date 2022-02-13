@@ -123,9 +123,9 @@ public interface FloatingBlockHelper {
                 && (!state.isToolRequired() || heldItem.isSuitableFor(state))
                 && !isBlockBlacklisted(world, pos, state);
     }
-
+    
     /**
-     * A structure builder intended to aid the creation of floating block structures.
+     * A builder intended to aid the creation of FloatingBlockEntity {@link BlockLikeEntitySet}s.
      */
     @SuppressWarnings("unused")
     class SetBuilder extends BlockLikeEntitySet.Builder {
