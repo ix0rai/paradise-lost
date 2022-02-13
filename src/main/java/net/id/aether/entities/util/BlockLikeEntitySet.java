@@ -144,7 +144,7 @@ public class BlockLikeEntitySet {
         /**
          * Allows one to add to a {@link BlockLikeEntitySet} only if a certain condition is met.
          * The predicate acts on an immutable copy of the entries so far.
-         * @param pos The position of the block that should be added to the {@link BlockLikeEntitySet}.
+         * @param entity The entity that should be added to the {@link BlockLikeEntitySet}.
          * @param predicate A {@link Predicate} to test whether the block should be added.
          */
         public Builder addIf(BlockLikeEntity entity, Predicate<Map<Vec3i, BlockLikeEntity>> predicate){
