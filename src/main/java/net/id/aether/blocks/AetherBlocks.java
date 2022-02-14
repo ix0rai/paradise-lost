@@ -3,6 +3,7 @@ package net.id.aether.blocks;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockSettingsAccessor;
 import net.id.aether.blocks.blockentity.AetherBlockEntityTypes;
 import net.id.aether.blocks.blockentity.AetherChestBlock;
+import net.id.aether.blocks.decorative.AetherDirtPathBlock;
 import net.id.aether.blocks.decorative.AmbrosiumLanternBlock;
 import net.id.aether.blocks.decorative.AmbrosiumTorchBlock;
 import net.id.aether.blocks.decorative.AmbrosiumWallTorchBlock;
@@ -67,7 +68,7 @@ public class AetherBlocks {
     public static final Block COARSE_AETHER_DIRT = add("coarse_aether_dirt", new Block(copy(DIRT).strength(0.3f)), coarseTillable(), flattenable());
     public static final Block PERMAFROST = add("permafrost", new Block(copy(DIRT).strength(2f).sounds(BlockSoundGroup.GILDED_BLACKSTONE)), flattenable());
     public static final FarmlandBlock AETHER_FARMLAND = add("aether_farmland", new AetherFarmlandBlock(copy(FARMLAND)));
-    public static final Block AETHER_DIRT_PATH = add("aether_grass_path", new AetherDirtPathBlock(copy(DIRT_PATH)));
+    public static final AetherDirtPathBlock AETHER_DIRT_PATH = add("aether_grass_path", new AetherDirtPathBlock(copy(DIRT_PATH)));
     public static final Block QUICKSOIL = add("quicksoil", new AetherQuicksoilBlock(of(Material.AGGREGATE).strength(0.5f, -1f).slipperiness(1F).velocityMultiplier(1.102F).sounds(BlockSoundGroup.SAND)));
     public static final Block PACKED_SWEDROOT = add("packed_swedroot", new Block(of(Material.WOOD).strength(2f).sounds(BlockSoundGroup.SHROOMLIGHT)), flattenable());
 
@@ -325,12 +326,11 @@ public class AetherBlocks {
     public static final LichenBlock LUCATIEL_LICHEN = add("lucatiel_lichen", new LichenBlock(lichen().ticksRandomly(), true));
     public static final LichenPileBlock LUCATIEL_LICHEN_PILE = add("lucatiel_lichen_pile", new LichenPileBlock(lichen(), true));
 
-    public static final GlowLichenBlock SWEDROOT_SPREAD = add("swedroot_spread", new GlowLichenBlock(Settings.of(Material.REPLACEABLE_PLANT, MapColor.OAK_TAN).noCollision().strength(1F).sounds(BlockSoundGroup.SHROOMLIGHT)), cutoutRenderLayer);
-
     public static final WallClingingPlantBlock ROOTCAP = add("rootcap", new WallClingingPlantBlock(copy(BROWN_MUSHROOM), AetherBlockTags.FUNGI_CLINGABLES), cutoutRenderLayer);
 
-    public static final AmadrysCropBlock AMADRYS = add("amadrys", new AmadrysCropBlock(shrub().mapColor(MapColor.PINK)), flammablePlant, cutoutMippedRenderLayer);
+    public static final AmadrysCropBlock AMADRYS = add("amadrys", new AmadrysCropBlock(shrub().mapColor(MapColor.PINK)), flammablePlant, cutoutRenderLayer);
     public static final FlaxCropBlock FLAX = add("flax", new FlaxCropBlock(shrub().mapColor(MapColor.OAK_TAN)), flammablePlant, cutoutRenderLayer);
+    public static final AetherHangingRootsBlock WILD_SWEDROOT = add("wild_swedroot", new AetherHangingRootsBlock(shrub().mapColor(MapColor.OAK_TAN)), flammablePlant, cutoutRenderLayer);
     public static final SwetrootCropBlock SWEDROOT = add("swedroot", new SwetrootCropBlock(shrub().mapColor(MapColor.BLUE)), flammablePlant, cutoutRenderLayer);
 
     public static final Block FLAXWEAVE_CUSHION = add("flaxweave_cushion", new Block(Settings.of(Material.WOOL).mapColor(MapColor.YELLOW).sounds(BlockSoundGroup.WOOL).strength(0.2F)), flammable(40, 10));
@@ -571,12 +571,6 @@ public class AetherBlocks {
 
     private static class AetherHangingRootsBlock extends HangingRootsBlock {
         protected AetherHangingRootsBlock(Settings settings) {
-            super(settings);
-        }
-    }
-
-    private static class AetherDirtPathBlock extends DirtPathBlock {
-        public AetherDirtPathBlock(Settings settings) {
             super(settings);
         }
     }

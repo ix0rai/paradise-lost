@@ -1,0 +1,10 @@
+{
+  "parent": "item/generated",
+  "textures": {
+<<<<<<< HEAD:src/main/resources/assets/the_aether/models/item/swedroot_spread.json
+    "layer0": "the_aether:block/swedroot_spread"
+=======
+    "layer0": "the_aether:block/swedroot_stage3"
+>>>>>>> e3fcbee3 (Name refactor and texture additions/removals):src/main/resources/assets/the_aether/models/item/wild_swedroot.json
+  }
+}
