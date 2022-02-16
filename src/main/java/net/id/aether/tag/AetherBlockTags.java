@@ -19,6 +19,8 @@ public class AetherBlockTags {
     public static final TagKey<Block> FLUTEGRASS_VALID_GROUND = register("plants/flutegrass_valid_ground");
     public static final TagKey<Block> AECHOR_PLANT_VALID_GROUND = register("plants/aechor_plant_valid_ground");
 
+    public static final TagKey<Block> SWEDROOT_PLANTABLE = register("plants/swedroot_plantable");
+
     //Swets
     public static final TagKey<Block> SWET_TRANSFORMERS_BLUE = register("swet_transformers/blue");
     public static final TagKey<Block> SWET_TRANSFORMERS_GOLDEN = register("swet_transformers/golden");

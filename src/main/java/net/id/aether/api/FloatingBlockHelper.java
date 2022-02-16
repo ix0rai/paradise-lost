@@ -123,7 +123,7 @@ public interface FloatingBlockHelper {
                 && (!state.isToolRequired() || heldItem.isSuitableFor(state))
                 && !isBlockBlacklisted(world, pos, state);
     }
-    
+
     /**
      * A builder intended to aid the creation of FloatingBlockEntity {@link BlockLikeEntitySet}s.
      */
