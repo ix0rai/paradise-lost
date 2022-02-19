@@ -19,6 +19,7 @@ import java.util.Queue;
 @Environment(EnvType.CLIENT)
 @Mixin(SpriteAtlasTexture.class)
 public abstract class SpriteAtlasTextureMixin{
+    /* TODO FIX DEV STUFF 1.18.2
     @Inject(
         method = "method_18160",
         at = @At(
@@ -75,5 +76,5 @@ public abstract class SpriteAtlasTextureMixin{
         if(identifier.getNamespace().equals(Aether.MOD_ID)){
             AetherDevel.Client.logMissingTexture(identifier);
         }
-    }
+    }*/
 }

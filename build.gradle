@@ -60,9 +60,9 @@ repositories {
         name = "Ladysnake Libs"
         url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
-    maven {
-        url = "https://maven.shedaniel.me/"
-    }
+//    maven {
+//        url = "https://maven.shedaniel.me/"
+//    }
     maven {
         url = "https://maven.kyrptonaught.dev/"
     }
@@ -87,7 +87,7 @@ loom {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.mappings_version}:v2"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Libraries
@@ -104,11 +104,11 @@ dependencies {
 
     // Implement the required portions of FAPI
     // Remember to maintain these, and add the modular bits as needed. 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Testing only, do not JiJ
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+//    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
     // Custom Portal Api
     modImplementation(include("net.kyrptonaught:customportalapi:${project.customportalapi_version}"))
