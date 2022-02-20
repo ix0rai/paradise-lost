@@ -33,10 +33,6 @@ public class MoaAPI {
      */
     public static final MoaRace FALLBACK_MOA = new MoaRace(MoaAttributes.GROUND_SPEED, SpawnStatWeighting.SPEED);
 
-    static {
-        register(Aether.locate("fallback"), FALLBACK_MOA);
-    }
-
     /**
      * Rather than a {@code Registry} registry, this uses a
      * {@link Object2ObjectOpenHashMap} registry, as a full
@@ -311,5 +307,9 @@ public class MoaAPI {
      * <a, href="https://discord.gg/eRsJ6F3Wng">Ask Azzy</a> about this. It's a lower bound and a variance for spawn stat data, it seems.
      */
     private static record SpawnStatData(float base, float variance) {
+    }
+
+    static {
+        register(Aether.locate("fallback"), FALLBACK_MOA);
     }
 }
