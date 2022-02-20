@@ -35,6 +35,10 @@ public class MoaAPI {
      */
     public static final MoaRace FALLBACK_MOA = new MoaRace(MoaAttributes.GROUND_SPEED, SpawnStatWeighting.SPEED);
 
+    static {
+        register(Aether.locate("fallback"), FALLBACK_MOA);
+    }
+
     /**
      * A map of all registered {@link MoaRace}s.
      */
