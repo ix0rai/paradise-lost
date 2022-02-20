@@ -26,13 +26,16 @@ import java.util.function.BiPredicate;
  * ~ Jack
  * @author AzazelTheDemonLord
  */
-
 public class MoaAPI {
 
     /**
      * If a {@code MoaRace} cannot be found by some method, it is recommended to use this in its place.
      */
     public static final MoaRace FALLBACK_MOA = new MoaRace(MoaAttributes.GROUND_SPEED, SpawnStatWeighting.SPEED);
+
+    static {
+        register(Aether.locate("fallback"), FALLBACK_MOA);
+    }
 
     /**
      * Rather than a {@code Registry} registry, this uses a
@@ -232,9 +235,6 @@ public class MoaAPI {
          * @return The ID of this {@code MoaRace} as provided by {@code MOA_RACE_REGISTRY}.
          */
         public Identifier getId(){
-            if (this == FALLBACK_MOA) {
-                return Aether.locate("fallback");
-            }
             for (var entry : MOA_RACE_REGISTRY.entrySet()){
                 if (entry.getValue() == this){
                     return entry.getKey();

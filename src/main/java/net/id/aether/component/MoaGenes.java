@@ -126,6 +126,7 @@ public class MoaGenes implements AutoSyncedComponent {
 
     public Identifier getTexture() {
         if (this.race == FALLBACK_MOA){
+            // TODO Custom exceptional moa
             return Aether.locate("textures/entity/moa/highlands_blue.png");
         }
         Identifier id = this.race.getId();
