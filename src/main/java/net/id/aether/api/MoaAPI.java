@@ -320,8 +320,4 @@ public class MoaAPI {
     static {
         register(Aether.locate("fallback"), FALLBACK_MOA);
     }
-
-    static {
-        register(Aether.locate("fallback"), FALLBACK_MOA);
-    }
 }
