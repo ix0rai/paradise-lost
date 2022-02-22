@@ -59,7 +59,7 @@ public final class LoreScreen extends HandledScreen<LoreHandler>{
         backgroundWidth = viewportWidth;
         backgroundHeight = viewportHeight;
     
-        var state = AetherComponents.LORE_STATE.get(MinecraftClient.getInstance().player);
+        var state = AetherComponents.LORE_STATE_KEY.get(MinecraftClient.getInstance().player);
         loreEntries = AetherRegistries.LORE_REGISTRY.stream().map((entry)->{
             var status = state.getLoreStatus(entry);
             if(status == LoreStatus.FREE || status == LoreStatus.UNLOCKED || status == LoreStatus.COMPLETED){

@@ -39,7 +39,7 @@ public final class AetherLore{
     
     @SuppressWarnings("unchecked")
     public static <T> void trigger(@NotNull LoreTriggerType triggerType, @NotNull ServerPlayerEntity player, @NotNull T object){
-        var state = AetherComponents.LORE_STATE.get(player);
+        var state = AetherComponents.LORE_STATE_KEY.get(player);
         for(LoreEntry<?> lore : TRIGGER_MAP.getOrDefault(triggerType, Set.of())){
             Identifier id = lore.getId();
             var status = state.getLoreStatus(id);

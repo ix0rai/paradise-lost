@@ -8,8 +8,6 @@ import net.id.aether.lore.LoreStatus;
 import net.id.aether.registry.AetherRegistries;
 import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
@@ -50,7 +48,7 @@ final class LoreCommand{
     
     private static int executeGrant(ServerCommandSource source, Identifier id) throws CommandSyntaxException{
         var player = source.getPlayer();
-        var state = AetherComponents.LORE_STATE.get(player);
+        var state = AetherComponents.LORE_STATE_KEY.get(player);
         var status = state.getLoreStatus(id);
         if(status == LoreStatus.UNLOCKED){
             state.setLoreStatus(id, LoreStatus.COMPLETED);
@@ -62,7 +60,7 @@ final class LoreCommand{
     
     private static int executeRevoke(ServerCommandSource source, Identifier id) throws CommandSyntaxException{
         var player = source.getPlayer();
-        var state = AetherComponents.LORE_STATE.get(player);
+        var state = AetherComponents.LORE_STATE_KEY.get(player);
         var status = state.getLoreStatus(id);
         if(status == LoreStatus.COMPLETED){
             state.setLoreStatus(id, LoreStatus.UNLOCKED);
@@ -74,7 +72,7 @@ final class LoreCommand{
     
     private static int executeGet(ServerCommandSource source, Identifier id) throws CommandSyntaxException{
         var player = source.getPlayer();
-        var state = AetherComponents.LORE_STATE.get(player);
+        var state = AetherComponents.LORE_STATE_KEY.get(player);
         var status = state.getLoreStatus(id);
         // make this translatable
         source.sendFeedback(new TranslatableText("commands.the_aether.lore.get." + switch(status){

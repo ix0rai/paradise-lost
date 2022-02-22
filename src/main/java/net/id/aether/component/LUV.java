@@ -29,7 +29,7 @@ public class LUV implements AutoSyncedComponent, CommonTickingComponent, PlayerC
     }
 
     public static LUV getLUV(PlayerEntity player) {
-        return AetherComponents.LUV.get(player);
+        return AetherComponents.LUV_KEY.get(player);
     }
 
     @Override

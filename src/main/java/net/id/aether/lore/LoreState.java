@@ -138,7 +138,7 @@ public interface LoreState extends AutoSyncedComponent{
                     });
                 }
                 
-                AetherComponents.LORE_STATE.sync(player);
+                AetherComponents.LORE_STATE_KEY.sync(player);
             }
         }
     
