@@ -14,16 +14,6 @@ public class RenderUtils {
         return MathHelper.packRgb(color.getX(), color.getY(), color.getZ());
     }
 
-    @Deprecated(forRemoval = true)
-    public static int toHex(int r, int g, int b) {
-        return MathHelper.packRgb(r, g, b);
-    }
-    
-    @Deprecated(forRemoval = true)
-    public static int toHex(int r, int g, int b, int a) {
-        return MathHelper.packRgb(r, g, b) | (a << 24);
-    }
-
     public static Vec3i toRGB(int hex) {
         return new Vec3i((hex & 0xFF0000) >> 16, (hex & 0xFF00) >> 8, (hex & 0xFF));
     }

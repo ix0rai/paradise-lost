@@ -97,22 +97,6 @@ public class MoaAPI {
         registerBreeding(new MatingEntry(child, predicate));
     }
 
-    /**
-     * @see MoaAPI#registerBreeding(MoaRace, float, MoaRace, MoaRace)
-     */
-    @Deprecated(forRemoval = true, since = "b1.6.6")
-    public static void registerBreedingChance(MoaRace child, MoaRace parentA, MoaRace parentB, float chance) {
-        registerBreeding(child, chance, parentA, parentB);
-    }
-
-    /**
-     * @see MoaAPI#registerBreeding(MoaRace, Predicate, MoaRace, MoaRace)
-     */
-    @Deprecated(forRemoval = true, since = "b1.6.6")
-    public static void registerBreedingPredicate(MoaRace child, MoaRace parentA, MoaRace parentB, Function4<MoaGenes, MoaGenes, World, BlockPos, Boolean> breedingPredicate) {
-        registerBreeding(new MatingEntry(child, (ctx) -> breedingPredicate.apply(ctx.parentA, ctx.parentB, ctx.world, ctx.pos) && createIdentityCheck(parentA, parentB).test(new MoaBreedingContext(ctx.parentA, ctx.parentB, ctx.world, ctx.pos))));
-    }
-
     private static void registerBreeding(MatingEntry entry) {
         MOA_BREEDING_REGISTRY.add(entry);
     }
@@ -124,14 +108,6 @@ public class MoaAPI {
      */
     public static void registerSpawning(MoaRace race, int weight, RegistryKey<Biome> spawnBiome) {
         MOA_SPAWN_REGISTRY.computeIfAbsent(spawnBiome, key -> new SpawnBucket()).put(race, weight);
-    }
-
-    /**
-     * @see MoaAPI#registerSpawning
-     */
-    @Deprecated(forRemoval = true, since = "b1.6.6")
-    public static void registerBiomeSpawnWeighting(RegistryKey<Biome> spawnBiome, MoaRace child, int weight) {
-        registerSpawning(child, weight, spawnBiome);
     }
 
     /**
