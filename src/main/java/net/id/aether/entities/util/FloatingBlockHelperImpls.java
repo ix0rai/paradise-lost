@@ -1,6 +1,6 @@
 package net.id.aether.entities.util;
 
-import net.gudenau.minecraft.moretags.MoreTags;
+//import net.gudenau.minecraft.moretags.MoreTags;
 import net.id.aether.api.FloatingBlockHelper;
 import net.id.aether.entities.block.FloatingBlockEntity;
 import net.id.aether.tag.AetherBlockTags;
@@ -250,36 +250,37 @@ public class FloatingBlockHelperImpls {
                 return false;
             }
             // sides and bottom (sticky blocks)
-            if (state.isIn(MoreTags.STICKY_BLOCKS)) {
-                // checks each of the sides
-                for (var newPos : new BlockPos[]{
-                        pos.north(),
-                        pos.east(),
-                        pos.south(),
-                        pos.west(),
-                        pos.down()
-                        /* up has already been checked */
-                }) {
-                    BlockState adjacentState = world.getBlockState(newPos);
-                    if (isAdjacentBlockStuck(state, adjacentState)) {
-                        // check the rest of the tree above the side block
-                        if (!continueTree(world, newPos, builder, overrideBlacklist)) {
-                            return false;
-                        }
-                    }
-                }
-            }
+            // TODO: FIX MORETAGS for 1.18.2, then uncomment
+            //if (state.isIn(MoreTags.STICKY_BLOCKS)) {
+            //    // checks each of the sides
+            //    for (var newPos : new BlockPos[]{
+            //            pos.north(),
+            //            pos.east(),
+            //            pos.south(),
+            //            pos.west(),
+            //            pos.down()
+            //            /* up has already been checked */
+            //    }) {
+            //        BlockState adjacentState = world.getBlockState(newPos);
+            //        if (isAdjacentBlockStuck(state, adjacentState)) {
+            //            // check the rest of the tree above the side block
+            //            if (!continueTree(world, newPos, builder, overrideBlacklist)) {
+            //                return false;
+            //            }
+            //        }
+            //    }
+            //}
             return true;
         }
 
         private static boolean isAdjacentBlockStuck(BlockState state, BlockState adjacentState) {
-            if (state.isIn(MoreTags.HONEY_BLOCKS) && adjacentState.isIn(MoreTags.SLIME_BLOCKS)) {
+            /*if (state.isIn(MoreTags.HONEY_BLOCKS) && adjacentState.isIn(MoreTags.SLIME_BLOCKS)) {
                 return false;
             } else if (state.isIn(MoreTags.SLIME_BLOCKS) && adjacentState.isIn(MoreTags.HONEY_BLOCKS)) {
                 return false;
             } else {
                 return state.isIn(MoreTags.STICKY_BLOCKS) || adjacentState.isIn(MoreTags.STICKY_BLOCKS);
-            }
+            }*/return false; // TODO: FIX MORETAGS for 1.18.2, then uncomment
         }
     }
 }
