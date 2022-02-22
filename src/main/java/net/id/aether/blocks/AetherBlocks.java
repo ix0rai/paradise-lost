@@ -3,7 +3,6 @@ package net.id.aether.blocks;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockSettingsAccessor;
 import net.id.aether.blocks.blockentity.AetherBlockEntityTypes;
 import net.id.aether.blocks.blockentity.AetherChestBlock;
-import net.id.aether.blocks.decorative.AetherDirtPathBlock;
 import net.id.aether.blocks.decorative.AmbrosiumLanternBlock;
 import net.id.aether.blocks.decorative.AmbrosiumTorchBlock;
 import net.id.aether.blocks.decorative.AmbrosiumWallTorchBlock;
@@ -572,6 +571,12 @@ public class AetherBlocks {
 
     private static class AetherHangingRootsBlock extends HangingRootsBlock {
         protected AetherHangingRootsBlock(Settings settings) {
+            super(settings);
+        }
+    }
+
+    private static class AetherDirtPathBlock extends DirtPathBlock {
+        public AetherDirtPathBlock(Settings settings) {
             super(settings);
         }
     }
