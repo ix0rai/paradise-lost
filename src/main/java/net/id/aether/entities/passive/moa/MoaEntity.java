@@ -13,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -66,6 +67,15 @@ public class MoaEntity extends SaddleMountEntity implements JumpingMount, Tameab
         return createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 35.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0D);
+    }
+
+    @Override
+    public double getAttributeValue(EntityAttribute attribute){
+        if (attribute == EntityAttributes.GENERIC_MAX_HEALTH && genes.isInitialized()) {
+            return genes.getAttribute(MoaAttributes.MAX_HEALTH);
+        } else {
+            return super.getAttributeValue(attribute);
+        }
     }
 
     @Override
@@ -194,7 +204,6 @@ public class MoaEntity extends SaddleMountEntity implements JumpingMount, Tameab
         }
 
     }
-
 
     @Override
     @Environment(EnvType.CLIENT)

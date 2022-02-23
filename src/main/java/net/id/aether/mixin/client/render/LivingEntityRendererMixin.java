@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LivingEntityRendererMixin {
     @Inject(method = "setupTransforms", at = @At("TAIL"))
     private void setupTransforms(LivingEntity entity, MatrixStack matrices, float animationProgress, float bodyYaw, float tickDelta, CallbackInfo ci) {
-        if (((AetherEntityExtensions) entity).getFlipped()) {
+        if (((AetherEntityExtensions) entity).isBeingGravitated()) {
             if (!(entity instanceof PlayerEntity)) {
                 matrices.translate(0.0D, entity.getHeight() + 0.1F, 0.0D);
                 matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F));

@@ -2,35 +2,15 @@ package net.id.aether.entities;
 
 public interface AetherEntityExtensions {
 
-    boolean flipped = false;
-    boolean aetherFallen = false;
-    boolean aerbunnyFallen = false;
-    int gravFlipTime = 0;
+    boolean isBeingGravitated();
 
-    default int getFlipTime() {
-        return gravFlipTime;
-    }
+    boolean isAetherFallen();
 
-    default boolean getFlipped() {
-        return flipped;
-    }
+    void setAetherFallen(boolean aetherFallen);
 
-    default boolean isAetherFallen() {
-        return aetherFallen;
-    }
+    boolean isAerbunnyFallen();
 
-    default void setAetherFallen(boolean aetherFallen) {
-    }
+    void setAerbunnyFallen(boolean aerbunnyFallen);
 
-    default boolean isAerbunnyFallen() {
-        return aerbunnyFallen;
-    }
-
-    default void setAerbunnyFallen(boolean aerbunnyFallen) {
-    }
-
-    void setFlipped();
-
-    default void tick(){
-    }
+    void gravitate();
 }

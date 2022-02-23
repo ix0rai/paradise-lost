@@ -203,5 +203,26 @@ public class RookEntity extends MobEntity {
         return false;
     }
 
+    @Override
+    public void handleStatus(byte status) {
+        if (status == 60) {
+            for(int i = 0; i < 20 + random.nextInt(20); ++i) {
+                double d = this.random.nextGaussian() * 0.02D;
+                double e = this.random.nextGaussian() * 0.02D;
+                double f = this.random.nextGaussian() * 0.02D;
+                if(random.nextInt(3) == 0) {
+                    this.world.addParticle(ParticleTypes.LARGE_SMOKE, this.getParticleX(1.0D), this.getRandomBodyY(), this.getParticleZ(1.0D), d, e, f);
+                } else {
+                    this.world.addParticle(ParticleTypes.SMOKE, this.getParticleX(1.0D), this.getRandomBodyY(), this.getParticleZ(1.0D), d, e, f);
+                }
+                if(random.nextInt(3) == 0) {
+                    this.world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, this.getParticleX(1.0D), this.getRandomBodyY(), this.getParticleZ(1.0D), d / 3, e, f / 3);
+                }
+            }
+        } else {
+            super.handleStatus(status);
+        }
+    }
+
     public static record RookData(byte ascension) implements EntityData {}
 }

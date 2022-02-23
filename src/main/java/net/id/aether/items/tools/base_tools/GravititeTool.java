@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class GravititeTool {
     public static ActionResult flipEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
-        ((AetherEntityExtensions) entity).setFlipped();
+        ((AetherEntityExtensions) entity).gravitate();
         return ActionResult.SUCCESS;
     }
 

@@ -64,30 +64,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
         }
     }
 
-    @Inject(method = "onDeath", at = @At("HEAD"), cancellable = true)
-    public void onDeath(DamageSource source, CallbackInfo ci) {
-    }
-
-    @Override
-    public boolean isAetherFallen() {
-        return aetherFallen;
-    }
-
-    @Override
-    public void setAetherFallen(boolean aetherFallen) {
-        this.aetherFallen = aetherFallen;
-    }
-
-    @Override
-    public boolean isAerbunnyFallen() {
-        return aerbunnyFallen;
-    }
-
-    @Override
-    public void setAerbunnyFallen(boolean aerbunnyFallen) {
-        this.aerbunnyFallen = aerbunnyFallen;
-    }
-
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     public void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         if (isAetherFallen()) {
@@ -114,5 +90,25 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
             }
             cir.cancel();
         }
+    }
+
+    @Override
+    public boolean isAetherFallen() {
+        return aetherFallen;
+    }
+
+    @Override
+    public void setAetherFallen(boolean aetherFallen) {
+        this.aetherFallen = aetherFallen;
+    }
+
+    @Override
+    public boolean isAerbunnyFallen() {
+        return aerbunnyFallen;
+    }
+
+    @Override
+    public void setAerbunnyFallen(boolean aerbunnyFallen) {
+        this.aerbunnyFallen = aerbunnyFallen;
     }
 }
