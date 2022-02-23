@@ -1,7 +1,7 @@
 package net.id.aether.mixin.entity;
 
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
+//import dev.emi.trinkets.api.TrinketComponent;
+//import dev.emi.trinkets.api.TrinketsApi;
 import net.id.aether.entities.AetherEntityExtensions;
 import net.id.aether.entities.AetherEntityTypes;
 import net.id.aether.items.tools.AetherToolMaterials;
@@ -9,22 +9,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements AetherEntityExtensions {

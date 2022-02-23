@@ -1,6 +1,6 @@
 package net.id.aether.component;
 
-import dev.emi.trinkets.api.TrinketsApi;
+//import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
 import dev.onyxstudios.cca.api.v3.entity.PlayerComponent;
@@ -14,6 +14,7 @@ import net.id.aether.effect.condition.Severity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.MathHelper;
@@ -174,10 +175,11 @@ public class ConditionManager implements AutoSyncedComponent, CommonTickingCompo
     public List<ConditionModifier> getActiveModifiers() {
         List<ConditionModifier> modifiers = new ArrayList<>();
         if(target instanceof PlayerEntity player) {
-            var stacks =
-                    TrinketsApi.TRINKET_COMPONENT.get(player)
-                            .getEquipped(stack -> stack.getItem() instanceof ConditionModifier)
-                            .stream().map(Pair::getRight).collect(Collectors.toList());
+            // FIXME 1.18.2
+            List<ItemStack> stacks = new ArrayList<>();
+//                    TrinketsApi.TRINKET_COMPONENT.get(player)
+//                            .getEquipped(stack -> stack.getItem() instanceof ConditionModifier)
+//                            .stream().map(Pair::getRight).collect(Collectors.toList());
 
             player.getArmorItems().forEach(stack -> {
                 if(stack.getItem() instanceof ConditionModifier)

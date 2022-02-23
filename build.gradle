@@ -113,8 +113,9 @@ dependencies {
     // Custom Portal Api
     modImplementation(include("net.kyrptonaught:customportalapi:${project.customportalapi_version}"))
 
+    // FIXME 1.18.2
     // Implement Trinkets for parachutes, rings etc.
-    modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
+//    modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
 
 //    modImplementation(include("net.gudenau.minecraft:MoreTags:${project.moretags_version}"))
     modImplementation(include("net.gudenau.minecraft:RecipeConfidence:${project.recipeconfidence_version}"))
