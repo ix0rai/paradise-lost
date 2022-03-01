@@ -93,7 +93,8 @@ dependencies {
     // Libraries
     modImplementation(include("com.jamieswhiteshirt:reach-entity-attributes:${project.entity_attributes_version}"))
 
-    modImplementation(include("com.github.CDAGaming.CrowdinTranslate:crowdin-translate:${project.crowdin_translate_version}"))
+//    TODO TEMPORARILY REMOVED 1.18.2
+//    modImplementation(include("com.github.CDAGaming.CrowdinTranslate:crowdin-translate:${project.crowdin_translate_version}"))
 
     modImplementation(include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"))
 

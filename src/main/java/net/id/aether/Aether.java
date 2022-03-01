@@ -1,6 +1,6 @@
 package net.id.aether;
 
-import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
+//import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -110,7 +110,7 @@ public class Aether implements ModInitializer, ClientModInitializer {
     @Override
     @Environment(EnvType.CLIENT)
     public void onInitializeClient() {
-        CrowdinTranslate.downloadTranslations("aether", MOD_ID);
+//      TODO 1.18.2 CrowdinTranslate.downloadTranslations("aether", MOD_ID);
         AetherModelPredicates.initClient();
         AetherArmorModels.initClient();
         AetherModelLayers.initClient();
