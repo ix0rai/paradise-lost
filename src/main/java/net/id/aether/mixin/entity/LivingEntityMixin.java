@@ -5,14 +5,21 @@ package net.id.aether.mixin.entity;
 import net.id.aether.entities.AetherEntityExtensions;
 import net.id.aether.entities.AetherEntityTypes;
 import net.id.aether.items.tools.AetherToolMaterials;
+import net.id.aether.world.dimension.AetherDimension;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.border.WorldBorder;
+import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -67,6 +74,33 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
         }
 
         return gravity;
+    }
+
+    // We don't have to worry about this running twice for PlayerEntities, because it will have already returned in PlayerEntityMixin.
+    // TODO let this be configurable
+    @SuppressWarnings("ConstantConditions")
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
+        if (source.isOutOfWorld() && getY() < world.getBottomY() - 1 && world.getRegistryKey() == AetherDimension.AETHER_WORLD_KEY) {
+            if (!world.isClient()) {
+                this.setAetherFallen(true);
+                ServerWorld overworld = getServer().getWorld(World.OVERWORLD);
+                WorldBorder worldBorder = overworld.getWorldBorder();
+                double xMin = Math.max(-2.9999872E7D, worldBorder.getBoundWest() + 16.0D);
+                double zMin = Math.max(-2.9999872E7D, worldBorder.getBoundNorth() + 16.0D);
+                double xMax = Math.min(2.9999872E7D, worldBorder.getBoundEast() - 16.0D);
+                double zMax = Math.min(2.9999872E7D, worldBorder.getBoundSouth() - 16.0D);
+                double scaleFactor = DimensionType.getCoordinateScaleFactor(world.getDimension(), overworld.getDimension());
+                BlockPos blockPos3 = new BlockPos(MathHelper.clamp(getX() * scaleFactor, xMin, xMax), world.getTopY() + 128, MathHelper.clamp(getZ() * scaleFactor, zMin, zMax));
+
+                this.moveToWorld(overworld);
+                this.teleport(blockPos3.getX(), blockPos3.getY(), blockPos3.getZ());
+                StatusEffectInstance ef = new StatusEffectInstance(StatusEffects.NAUSEA, 160, 2, false, false, true);
+                ((LivingEntity) (Object) this).addStatusEffect(ef);
+            }
+            cir.setReturnValue(false);
+            cir.cancel();
+        }
     }
 
     @Inject(method = "damage", at = @At("RETURN"))

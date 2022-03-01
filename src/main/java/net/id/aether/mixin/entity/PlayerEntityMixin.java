@@ -6,8 +6,8 @@ import net.id.aether.world.dimension.AetherDimension;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
@@ -41,6 +40,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
 
     @Shadow public abstract PlayerAbilities getAbilities();
 
+    // TODO let this be configurable
+    @SuppressWarnings("ConstantConditions")
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.isOutOfWorld() && getY() < world.getBottomY() - 1 && world.getRegistryKey() == AetherDimension.AETHER_WORLD_KEY) {
@@ -56,7 +57,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
                 BlockPos blockPos3 = new BlockPos(MathHelper.clamp(getX() * scaleFactor, xMin, xMax), world.getTopY() + 128, MathHelper.clamp(getZ() * scaleFactor, zMin, zMax));
 
                 ((ServerPlayerEntity) (Object) this).teleport(overworld, blockPos3.getX(), blockPos3.getY(), blockPos3.getZ(), getYaw(), getPitch());
-                StatusEffectInstance ef = new StatusEffectInstance(StatusEffect.byRawId(9), 160, 2, false, false, true);
+                StatusEffectInstance ef = new StatusEffectInstance(StatusEffects.NAUSEA, 160, 2, false, false, true);
                 this.addStatusEffect(ef);
             }
             cir.setReturnValue(false);
