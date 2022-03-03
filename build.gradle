@@ -57,8 +57,8 @@ repositories {
         url = "https://maven.terraformersmc.com/releases/"
     }
     maven {
-        name = "Ladysnake Libs"
-        url = "https://ladysnake.jfrog.io/artifactory/mods"
+        name = 'Ladysnake Mods'
+        url = 'https://ladysnake.jfrog.io/artifactory/mods'
     }
 //    maven {
 //        url = "https://maven.shedaniel.me/"
@@ -116,7 +116,7 @@ dependencies {
 
     // FIXME 1.18.2
     // Implement Trinkets for parachutes, rings etc.
-//    modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
+    modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
 
 //    modImplementation(include("net.gudenau.minecraft:MoreTags:${project.moretags_version}"))
     modImplementation(include("net.gudenau.minecraft:RecipeConfidence:${project.recipeconfidence_version}"))
