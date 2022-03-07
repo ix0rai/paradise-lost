@@ -28,9 +28,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements AetherEntityExtensions {
 
-    private boolean aetherFallen = false;
-    public boolean aerbunnyFallen = false;
-
     public PlayerEntityMixin(EntityType<? extends LivingEntity> type, World world) {
         super(type, world);
     }
@@ -68,7 +65,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     public void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         if (isAetherFallen()) {
-            aetherFallen = false;
+            setAetherFallen(false);
             if (getAbilities().allowFlying) {
                 cir.setReturnValue(false);
             } else {
@@ -79,8 +76,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
             }
             cir.cancel();
         }
-        if (aerbunnyFallen) {
-            aerbunnyFallen = false;
+        if (isAerbunnyFallen()) {
+            setAerbunnyFallen(false);
             if (getAbilities().allowFlying) {
                 cir.setReturnValue(false);
             } else {
@@ -91,25 +88,5 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AetherEn
             }
             cir.cancel();
         }
-    }
-
-    @Override
-    public boolean isAetherFallen() {
-        return aetherFallen;
-    }
-
-    @Override
-    public void setAetherFallen(boolean aetherFallen) {
-        this.aetherFallen = aetherFallen;
-    }
-
-    @Override
-    public boolean isAerbunnyFallen() {
-        return aerbunnyFallen;
-    }
-
-    @Override
-    public void setAerbunnyFallen(boolean aerbunnyFallen) {
-        this.aerbunnyFallen = aerbunnyFallen;
     }
 }

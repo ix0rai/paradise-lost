@@ -32,6 +32,12 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
     @Unique
     private int gravitatedTicks;
 
+    @Unique
+    public boolean aerbunnyFallen = false;
+
+    @Unique
+    private boolean aetherFallen = false;
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -115,6 +121,16 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
     }
 
     @Override
+    public boolean isAetherFallen() {
+        return aetherFallen;
+    }
+
+    @Override
+    public void setAetherFallen(boolean aetherFallen) {
+        this.aetherFallen = aetherFallen;
+    }
+
+    @Override
     public void gravitate() {
         gravitatedTicks = 20;
     }
@@ -122,5 +138,15 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
     @Override
     public boolean isBeingGravitated() {
         return gravitatedTicks > 0;
+    }
+
+    @Override
+    public boolean isAerbunnyFallen() {
+        return aerbunnyFallen;
+    }
+
+    @Override
+    public void setAerbunnyFallen(boolean aerbunnyFallen) {
+        this.aerbunnyFallen = aerbunnyFallen;
     }
 }
