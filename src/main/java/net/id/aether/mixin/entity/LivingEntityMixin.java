@@ -1,10 +1,11 @@
 package net.id.aether.mixin.entity;
 
-//import dev.emi.trinkets.api.TrinketComponent;
-//import dev.emi.trinkets.api.TrinketsApi;
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.id.aether.entities.AetherEntityExtensions;
 import net.id.aether.entities.AetherEntityTypes;
 import net.id.aether.items.tools.AetherToolMaterials;
+import net.id.aether.tag.AetherItemTags;
 import net.id.aether.world.dimension.AetherDimension;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -26,6 +27,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements AetherEntityExtensions {
@@ -57,7 +60,7 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
         boolean isFalling = this.getVelocity().y <= 0.0D;
         if ((isFalling || this.isBeingGravitated()) && !thiz.hasStatusEffect(StatusEffects.SLOW_FALLING) && !isTouchingWater() && !isSneaking()) {
             // Get parachutes from trinket slots
-            Optional<TrinketComponent> componentOptional = TrinketsApi.getTrinketComponent(entity);
+            Optional<TrinketComponent> componentOptional = TrinketsApi.getTrinketComponent(thiz);
             boolean isWearingParachute = componentOptional.isPresent()
                     && componentOptional.get().isEquipped(e -> e.isIn(AetherItemTags.PARACHUTES));
 

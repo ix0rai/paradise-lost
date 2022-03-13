@@ -1,7 +1,5 @@
 package net.id.aether.api;
 
-import net.gudenau.minecraft.moretags.MoreBlockTags;
-import net.gudenau.minecraft.moretags.MoreTags;
 import net.id.aether.entities.block.BlockLikeEntity;
 import net.id.aether.entities.block.FloatingBlockEntity;
 import net.id.aether.entities.util.FloatingBlockHelperImpls;

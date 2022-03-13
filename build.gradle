@@ -60,9 +60,9 @@ repositories {
         name = 'Ladysnake Mods'
         url = 'https://ladysnake.jfrog.io/artifactory/mods'
     }
-//    maven {
-//        url = "https://maven.shedaniel.me/"
-//    }
+    maven {
+        url = "https://maven.shedaniel.me/"
+    }
     maven {
         url = "https://maven.kyrptonaught.dev/"
     }
@@ -118,7 +118,7 @@ dependencies {
     // Implement Trinkets for parachutes, rings etc.
     modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
 
-//    modImplementation(include("net.gudenau.minecraft:MoreTags:${project.moretags_version}"))
+    modImplementation(include("net.gudenau.minecraft:MoreTags:${project.moretags_version}"))
     modImplementation(include("net.gudenau.minecraft:RecipeConfidence:${project.recipeconfidence_version}"))
     modImplementation(include("net.gudenau.minecraft:CustomShaderLib:${project.customshaderlib_version}"))
 }
