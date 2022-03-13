@@ -57,8 +57,8 @@ repositories {
         url = "https://maven.terraformersmc.com/releases/"
     }
     maven {
-        name = 'Ladysnake Mods'
-        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        name = "Ladysnake Libs"
+        url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
     maven {
         url = "https://maven.shedaniel.me/"
@@ -93,8 +93,7 @@ dependencies {
     // Libraries
     modImplementation(include("com.jamieswhiteshirt:reach-entity-attributes:${project.entity_attributes_version}"))
 
-//    TODO TEMPORARILY REMOVED 1.18.2
-//    modImplementation(include("com.github.CDAGaming.CrowdinTranslate:crowdin-translate:${project.crowdin_translate_version}"))
+    modImplementation(include("com.github.CDAGaming.CrowdinTranslate:crowdin-translate:${project.crowdin_translate_version}"))
 
     modImplementation(include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"))
 
@@ -109,12 +108,11 @@ dependencies {
 
     // Testing only, do not JiJ
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-//    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
     // Custom Portal Api
     modImplementation(include("net.kyrptonaught:customportalapi:${project.customportalapi_version}"))
 
-    // FIXME 1.18.2
     // Implement Trinkets for parachutes, rings etc.
     modImplementation(include("dev.emi:trinkets:${project.trinkets_version}"))
 
