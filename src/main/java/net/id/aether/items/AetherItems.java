@@ -1,7 +1,7 @@
 package net.id.aether.items;
 
 import com.google.common.collect.ImmutableList;
-//import dev.emi.trinkets.api.TrinketItem;
+import dev.emi.trinkets.api.TrinketItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.id.aether.blocks.AetherBlocks;
 import net.id.aether.entities.AetherEntityTypes;
@@ -114,9 +114,8 @@ public class AetherItems {
     public static final PigSlayerItem PIG_SLAYER = add("pig_slayer", new PigSlayerItem(AetherToolMaterials.LEGENDARY, 3, -2.4f, aetherLootTool));
     public static final CandyCaneSwordItem CANDY_CANE_SWORD = add("candy_cane_sword", new CandyCaneSwordItem(AetherToolMaterials.CANDY, 3, -2f, aetherLootTool));
 
-    // FIXME 1.18.2
-//    public static final TrinketItem CLOUD_PARACHUTE = add("cold_parachute", new TrinketItem(unstackableTool));
-//    public static final TrinketItem GOLDEN_CLOUD_PARACHUTE = add("golden_parachute", new TrinketItem(tool().maxCount(1).maxDamage(20)));
+    public static final TrinketItem CLOUD_PARACHUTE = add("cold_parachute", new TrinketItem(unstackableTool));
+    public static final TrinketItem GOLDEN_CLOUD_PARACHUTE = add("golden_parachute", new TrinketItem(tool().maxCount(1).maxDamage(20)));
 
     public static final AmbrosiumBloodstoneItem AMBROSIUM_BLOODSTONE = add("ambrosium_bloodstone", new AmbrosiumBloodstoneItem(unstackableTool));
     public static final ZaniteBloodstoneItem ZANITE_BLOODSTONE = add("zanite_bloodstone", new ZaniteBloodstoneItem(unstackableTool));

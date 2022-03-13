@@ -1,6 +1,5 @@
 package net.id.aether.entities.passive;
 
-import dev.onyxstudios.cca.api.v3.component.ComponentContainer;
 import net.id.aether.blocks.AetherBlocks;
 import net.id.aether.items.AetherItems;
 import net.minecraft.entity.EntityType;
@@ -70,10 +69,5 @@ public class AetherAnimalEntity extends AnimalEntity {
                 server.spawnParticles(parameters, this.getParticleX(1.0D), this.getRandomBodyY() + yOffset, this.getParticleZ(1.0D), 1 + random.nextInt(maxAmount), d, e, f, 0);
             }
         }
-    }
-
-    @Override
-    public ComponentContainer getComponentContainer() {
-        return null;
     }
 }
