@@ -71,7 +71,7 @@ public class MoaEntity extends SaddleMountEntity implements JumpingMount, Tameab
 
     @Override
     public double getAttributeValue(EntityAttribute attribute){
-        if (attribute == EntityAttributes.GENERIC_MAX_HEALTH && genes.isInitialized()) {
+        if (attribute == EntityAttributes.GENERIC_MAX_HEALTH && genes != null && genes.isInitialized()) {
             return genes.getAttribute(MoaAttributes.MAX_HEALTH);
         } else {
             return super.getAttributeValue(attribute);
