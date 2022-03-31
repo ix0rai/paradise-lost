@@ -1,6 +1,5 @@
 package net.id.aether;
 
-import com.mojang.logging.LogUtils;
 import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -38,7 +37,8 @@ import net.id.aether.world.dimension.AetherDimension;
 import net.id.aether.world.feature.AetherFeatures;
 import net.id.aether.world.gen.carver.AetherCarvers;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Docs for Paradise Lost are sometimes written long after
@@ -60,7 +60,7 @@ import org.slf4j.Logger;
  */
 public class Aether implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer {
     public static final String MOD_ID = "the_aether";
-    public static final Logger LOG = LogUtils.getLogger();
+    public static final Logger LOG = LogManager.getLogger(MOD_ID);
     
     /**
      * Creates a new {@link Identifier} based on the passed location.

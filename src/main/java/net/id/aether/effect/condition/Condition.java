@@ -8,9 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.Tag;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 /**
@@ -43,7 +41,7 @@ public abstract class Condition {
     /**
      * A tag containing all {@code EntityType}s which cannot get this condition.
      */
-    public final TagKey<EntityType<?>> exempt;
+    public final Tag<EntityType<?>> exempt;
     /**
      * The maximum value for the {@code Temporary} {@link Persistence}.
      */
@@ -79,7 +77,7 @@ public abstract class Condition {
      * @param visThreshold See {@link Condition#visThreshold}
      * @see Persistence
      */
-    public Condition(TagKey<EntityType<?>> exempt, float maxTemp, float maxChron, float tempDecay, float chronDecay, float scalingValue, float visThreshold) {
+    public Condition(Tag<EntityType<?>> exempt, float maxTemp, float maxChron, float tempDecay, float chronDecay, float scalingValue, float visThreshold) {
         this.exempt = exempt;
         this.maxTemp = maxTemp;
         this.maxChron = maxChron;
@@ -103,7 +101,7 @@ public abstract class Condition {
      * @return Whether the provided {@code LivingEntity} is exempt from the condition
      */
     public final boolean isExempt(LivingEntity entity) {
-        return entity.getType().isIn(exempt);
+        return exempt.contains(entity.getType());
     }
 
     /**

@@ -1,6 +1,5 @@
 package net.id.aether.api;
 
-import net.gudenau.minecraft.moretags.MoreBlockTags;
 import net.gudenau.minecraft.moretags.MoreTags;
 import net.id.aether.entities.block.FloatingBlockEntity;
 import net.id.aether.entities.util.FloatingBlockStructure;
@@ -340,7 +339,7 @@ public interface FloatingBlockHelper {
                 return false;
             }
             // sides and bottom (sticky blocks)
-            if (state.isIn(MoreBlockTags.STICKY_BLOCKS)) {
+            if (state.isIn(MoreTags.STICKY_BLOCKS)) {
                 // checks each of the sides
                 for (var newPos : new BlockPos[]{
                         pos.north(),
@@ -363,12 +362,12 @@ public interface FloatingBlockHelper {
         }
 
         private static boolean isAdjacentBlockStuck(BlockState state, BlockState adjacentState) {
-            if (state.isIn(MoreBlockTags.HONEY_BLOCKS) && adjacentState.isIn(MoreBlockTags.SLIME_BLOCKS)) {
+            if (state.isIn(MoreTags.HONEY_BLOCKS) && adjacentState.isIn(MoreTags.SLIME_BLOCKS)) {
                 return false;
-            } else if (state.isIn(MoreBlockTags.SLIME_BLOCKS) && adjacentState.isIn(MoreBlockTags.HONEY_BLOCKS)) {
+            } else if (state.isIn(MoreTags.SLIME_BLOCKS) && adjacentState.isIn(MoreTags.HONEY_BLOCKS)) {
                 return false;
             } else {
-                return state.isIn(MoreBlockTags.STICKY_BLOCKS) || adjacentState.isIn(MoreBlockTags.STICKY_BLOCKS);
+                return state.isIn(MoreTags.STICKY_BLOCKS) || adjacentState.isIn(MoreTags.STICKY_BLOCKS);
             }
         }
     };

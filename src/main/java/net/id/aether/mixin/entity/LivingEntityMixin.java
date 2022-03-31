@@ -70,7 +70,7 @@ public abstract class LivingEntityMixin extends Entity implements AetherEntityEx
             // Get parachutes from trinket slots
             Optional<TrinketComponent> componentOptional = TrinketsApi.getTrinketComponent(entity);
             boolean isWearingParachute = componentOptional.isPresent()
-                    && componentOptional.get().isEquipped(e -> e.isIn(AetherItemTags.PARACHUTES));
+                    && AetherItemTags.PARACHUTES.values().stream().anyMatch(componentOptional.get()::isEquipped);
 
             if (isWearingParachute) {
                 gravity -= 0.07;

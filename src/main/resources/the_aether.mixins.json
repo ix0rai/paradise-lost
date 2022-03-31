@@ -33,7 +33,6 @@
     "server.ServerPlayerEntityMixin",
     "server.ServerPlayNetworkHandlerMixin",
     "server.ServerWorldMixin",
-    "structure.StructureFeatureAccessor",
     "util.NbtCompoundAccessor",
     "util.RarityMixin",
     "util.SignTypeAccessor",

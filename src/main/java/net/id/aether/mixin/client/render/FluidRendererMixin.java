@@ -3,7 +3,6 @@ package net.id.aether.mixin.client.render;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.id.aether.world.dimension.AetherDimension;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.block.FluidRenderer;
@@ -26,10 +25,10 @@ public class FluidRendererMixin {
     private float fadeAlpha;
 
     @Inject(method = "render", at = @At("HEAD"))
-    private void render(BlockRenderView world, BlockPos pos, VertexConsumer vertexConsumer, BlockState blockState, FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
+    private void render(BlockRenderView world, BlockPos pos, VertexConsumer builder, FluidState state, CallbackInfoReturnable<Boolean> info) {
         fadeAlpha = 1F;
         if (MinecraftClient.getInstance().world.getRegistryKey() == AetherDimension.AETHER_WORLD_KEY) {
-            if (fluidState.getFluid().matchesType(Fluids.WATER)) {
+            if (state.getFluid().matchesType(Fluids.WATER)) {
                 fadeAlpha = Math.min((pos.getY() - world.getBottomY()) / 32F, 1);
             }
         }

@@ -8,17 +8,12 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.decorator.BlockFilterPlacementModifier;
+import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
+import net.minecraft.world.gen.decorator.PlacementModifier;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-
-import java.util.List;
 
 import static net.id.aether.Aether.locate;
 
@@ -38,8 +33,8 @@ public class AetherPlacedFeatures {
     // for ease of familiarity with how 1.17 did it.
     static final PlacementModifier SPREAD_32_ABOVE = HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.getTop());
 
-    static RegistryEntry<PlacedFeature> register(String id, RegistryEntry<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
-        return BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, locate(id), new PlacedFeature(RegistryEntry.upcast(feature), List.of(modifiers)));
+    static PlacedFeature register(String id, PlacedFeature feature) {
+        return Registry.register(BuiltinRegistries.PLACED_FEATURE, locate(id), feature);
     }
     
     public static void init() {

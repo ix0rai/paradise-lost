@@ -8,7 +8,6 @@ import net.minecraft.block.FernBlock;
 import net.minecraft.block.TallPlantBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.Tag;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -17,14 +16,14 @@ import java.util.Random;
 
 public class AetherBrushBlock extends FernBlock {
 
-    private final TagKey<Block> validFloors;
+    private final Tag<Block> validFloors;
     private final boolean override;
 
     public AetherBrushBlock(Settings settings) {
         this(settings, AetherBlockTags.GENERIC_VALID_GROUND, false);
     }
 
-    public AetherBrushBlock(Settings settings, TagKey<Block> validFloors, boolean override) {
+    public AetherBrushBlock(Settings settings, Tag<Block> validFloors, boolean override) {
         super(settings);
         this.validFloors = validFloors;
         this.override = override;

@@ -70,7 +70,7 @@ public class MoaGenes implements AutoSyncedComponent {
     public void initMoa(@NotNull MoaEntity moa) {
         World world = moa.world;
         Random random = moa.getRandom();
-        race = MoaAPI.getMoaForBiome(world.getBiome(moa.getBlockPos()).getKey().get(), random);
+        race = MoaAPI.getMoaForBiome(world.getBiomeKey(moa.getBlockPos()).get(), random);
         affinity = race.defaultAffinity();
 
         for (MoaAttributes attribute : MoaAttributes.values()) {

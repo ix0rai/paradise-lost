@@ -99,7 +99,8 @@ public class LichenBlock extends FallingBlock {
             if (state.getPistonBehavior().equals(PistonBehavior.BLOCK) || state.getBlock().getHardness() == -1F){
                 return;
             }
-            FallingBlockEntity fallingBlockEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
+            FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, state);
+            world.spawnEntity(fallingBlockEntity);
             this.configureFallingBlockEntity(fallingBlockEntity);
 
             BlockPos.iterateOutwards(pos, 1, 0, 1).forEach(checkPos -> {
