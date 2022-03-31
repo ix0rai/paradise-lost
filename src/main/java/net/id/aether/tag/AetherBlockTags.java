@@ -8,7 +8,7 @@ import static net.id.aether.Aether.locate;
 
 public class AetherBlockTags {
 
-    public static final TagKey<Block> DIRT_BLOCKS = register("aether_dirt_blocks");
+    public static final Tag<Block> DIRT_BLOCKS = TagFactory.BLOCK.create(locate("aether_dirt_blocks"));
 
     //Gravitite
     public static final Tag<Block> FAST_FLOATERS = TagFactory.BLOCK.create(locate("fast_floaters"));
